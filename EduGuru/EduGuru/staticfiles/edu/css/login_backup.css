@@ -1,0 +1,169 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    max-width: 1200px;
+    background-color: #ffffff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Left - Form Section */
+.form-container {
+    width: 50%;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.form-container h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #0a58ca;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-container .forgot-password {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #33b864;
+    text-decoration: none;
+}
+
+.form-container .btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #33b864;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-container .btn:hover {
+    background-color: #28a745;
+}
+
+.form-container p {
+    margin-top: 20px;
+}
+
+.register-options {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.register-btn {
+    margin-top: 10px;
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+    background-color: #ddd;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.register-btn:hover {
+    background-color: #ccc;
+}
+
+/* Right - Branding Section */
+.branding-container {
+    width: 50%;
+    background-color: #1f285e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
+
+.branding-content {
+    text-align: center;
+}
+
+.branding-content img {
+    max-width: 100px;
+    margin-bottom: 20px;
+}
+
+.branding-content h1 {
+    font-size: 36px;
+}
+
+.branding-content p {
+    font-size: 18px;
+}
+
+/* Error and Success Message Styling */
+.message {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: left;
+    width: 100%;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.error-message {
+    color: #721c24;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.field-error {
+    color: #721c24;
+    font-size: 12px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+/* Transition for Form Field Focus */
+.form-container input:focus,
+.custom-dropdown select:focus {
+    border-color: #0a58ca;
+    outline: none;
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ tutor.user.first_name }} {{ tutor.user.last_name }} - Profile</title>
+    {% load static %}
+    {% load youtube_filters %}
+    <link rel="stylesheet" href="{% static 'edu/css/tutor_detail.css' %}">
+    <style>
+        .profile-pic img {
+            max-width: 200px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 10px 0;
+        }
+        .profile-pic {
+            text-align: center;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 style="text-align:center">{{ tutor.user.first_name }} {{ tutor.user.last_name }}</h1>
+    <div>
+    <!-- First Section: Tutor Details -->
+    <div class="container first-section">
+        <div class="details">
+            <div class="info">
+                <p><strong>Location:</strong> {{ tutor.city }}, {{ tutor.state }}</p>
+                <p><strong>Hourly Rate:</strong> ${{ tutor.hourly_rate }}</p>
+                <p><strong>Experience:</strong> {{ tutor.teaching_experience }} years</p>
+                <p><strong>Weekly Teaching Hours:</strong> {{ tutor.weekly_hours }} hours</p>
+                <p><strong>Subjects Offered:</strong> {{ tutor.subjects_offered }}</p>
+                <p><strong>Specializations:</strong> {{ tutor.specializations }}</p>
+                <p><strong>Certifications:</strong> {{ tutor.certifications }}</p>
+                <p><strong>Availability:</strong> {{ tutor.availability_schedule }}</p>
+                <p><strong>Bio:</strong> {{ tutor.bio }}</p>
+            </div>
+        </div>
+        <div class="profile-pic">
+            {% if tutor.profile_image %}
+                <img src="{% url 'serve_tutor_image' tutor.id %}" 
+                     alt="{{ tutor.user.first_name }}'s Profile Picture"
+                     class="profile-image">
+            {% else %}
+                <div class="no-image">
+                    <p>No profile image available</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Rest of the template remains the same -->
+    {% if tutor.youtube_link %}
+    <div class="container second-section">
+        <h2>Watch an Introduction Video</h2>
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{ tutor.youtube_link|extract_youtube_id }}" frameborder="0" allowfullscreen></iframe>
+    </div>
+    {% endif %}
+
+    <!-- Third Section: Ratings and Reviews -->
+    <div class="container third-section">
+        <h2>Average Rating: {{ avg_rating|floatformat:1 }}/5</h2>
+        
+        <!-- Display existing ratings -->
+        <ul>
+            {% for rating in tutor.ratings.all %}
+            <li>
+                <strong>{{ rating.user.username }}</strong>: {{ rating.rating }}/5
+                <p>{{ rating.review }}</p>
+                <small>Posted on: {{ rating.created_at|date:"F d, Y" }}</small>
+            </li>
+            {% endfor %}
+        </ul>
+    
+        {% if user.is_authenticated %}
+            <h2>Rate This Tutor</h2>
+            {% if can_rate %}
+                <!-- Rating form -->
+                <form method="POST">
+                    {% csrf_token %}
+                    <div id="star-rating" style="text-align:center">
+                        {% for i in "12345" %}
+                        <span class="star" data-value="{{ i }}">&#9733;</span>
+                        {% endfor %}
+                    </div>
+                    <input type="hidden" name="rating" id="rating-input">
+                    <textarea name="review" placeholder="Write your review (optional)..."></textarea>
+                    <button type="submit">Submit Rating</button>
+                </form>
+            {% else %}
+                {% if next_available_date %}
+                    <div class="alert alert-info">
+                        <p>You can submit a new rating after {{ next_available_date|date:"F d, Y" }}</p>
+                        {% if user_rating %}
+                            <p>Your current rating: {{ user_rating.rating }}/5</p>
+                            {% if user_rating.review %}
+                                <p>Your review: {{ user_rating.review }}</p>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% else %}
+            <p>You must <a href="{% url 'auth_page' %}">log in</a> to rate this tutor.</p>
+        {% endif %}
+    </div>
+
+    <div class="btn-container">
+        <a href="{% url 'tutor_search' %}" class="btn-back">Back to Search</a>
+    </div>
+
+    <!-- JavaScript for Star Rating -->
+    <script>
+        const stars = document.querySelectorAll('.star');
+        const ratingInput = document.getElementById('rating-input');
+    
+        function updateStarColors(selectedStar) {
+            stars.forEach(star => {
+                if (parseInt(star.getAttribute('data-value')) <= selectedStar) {
+                    star.classList.add('selected');
+                } else {
+                    star.classList.remove('selected');
+                }
+            });
+        }
+    
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const selectedValue = parseInt(star.getAttribute('data-value'));
+                updateStarColors(selectedValue);
+                ratingInput.value = selectedValue;
+            });
+    
+            star.addEventListener('mouseover', () => {
+                const hoverValue = parseInt(star.getAttribute('data-value'));
+                updateStarColors(hoverValue);
+            });
+    
+            star.addEventListener('mouseout', () => {
+                const currentValue = parseInt(ratingInput.value) || 0;
+                updateStarColors(currentValue);
+            });
+        });
+    </script>
+</body>
+</html>

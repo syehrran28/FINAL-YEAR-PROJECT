@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGuru - Auth</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'edu/css/auth_page.css' %}">
+    <style>
+        .modal-new {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-content-new {
+            background-color: white;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 500px;
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .close-new {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+        
+        .close-new:hover {
+            color: #000;
+        }
+        
+        .hidden-new {
+            display: none !important;
+        }
+        
+        .forgot-password-link {
+            color: #007bff;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .forgot-password-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+        
+        .modal-content-new h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-content-new label {
+            display: inline-block;
+            width: 140px;
+            margin-right: 10px;
+            text-align: right;
+        }
+        
+        .modal-content-new input {
+            width: calc(100% - 155px);
+            margin-bottom: 15px;
+        }
+        
+        /* New button class for the reset password modal */
+        .reset-btn-new {
+            padding: 12px;
+            background-color: #FFCA28;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: calc(100% - 155px);
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s;
+            margin-bottom: 10px;
+            margin-left: 150px;
+        }
+        
+        .reset-btn-new:hover {
+            background-color: #e0a800;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container-new">
+        <div class="auth-content-new">
+            <!-- Left Section -->
+            <div class="auth-image-new">
+                <h1>EduGuru</h1>
+                <p>EduGuru is an initiative to help students connect with the best tutors and achieve academic excellence.</p>
+                <button class="toggle-button-new hidden-new" id="toggle-login">Login</button>
+                <button class="toggle-button-new" id="toggle-register">Register</button>
+            </div>
+
+            <!-- login Form -->
+            <div class="form-container-new" id="login-container">
+                <form method="POST">
+                    {% csrf_token %}
+                    <h2>Sign In to Your Account</h2>
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if 'login' in message.tags %}
+                            <div class="alert-new {% if message.tags %}alert-{{ message.tags }}-new{% endif %}">
+                                {{ message }}
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    {% if login_form.errors %}
+                        <div class="alert-new alert-error-new">
+                            {% for error in login_form.non_field_errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <label for="username">Username</label>
+                    <input type="text" name="username" placeholder="Username" required>
+                    <label for="password">Password</label>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <a href="#" class="forgot-password-link">Forgot Password?</a>
+                    <button type="submit" name="sign_in" class="auth-btn-new">Sign In</button>
+                </form>
+            </div>
+
+            <!-- Register Form -->
+            <div class="form-container-new hidden-new" id="register-container">
+                <form method="POST" id="registerForm">
+                    {% csrf_token %}
+                    <h2>Create a New Account</h2>
+                    <div id="register-errors" class="alert-new alert-error-new" {% if not register_form.errors %}style="display: none;"{% endif %}>
+                        <ul>
+                            {% if register_form.errors %}
+                                {% for field, errors in register_form.errors.items %}
+                                    {% for error in errors %}
+                                        <li>{{ field|capfirst }}: {{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                                {% for error in register_form.non_field_errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                    
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="reg-username" placeholder="Username" required value="{{ register_form.username.value|default:'' }}">
+                    
+                    <label for="first_name">First Name</label>
+                    <input type="text" name="first_name" id="reg-first-name" placeholder="First Name" required value="{{ register_form.first_name.value|default:'' }}">
+                    
+                    <label for="last_name">Last Name</label>
+                    <input type="text" name="last_name" id="reg-last-name" placeholder="Last Name" required value="{{ register_form.last_name.value|default:'' }}">
+                    
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="reg-email" placeholder="Email" required value="{{ register_form.email.value|default:'' }}">
+                    
+                    <label for="password1">Password</label>
+                    <input type="password" name="password1" id="reg-password1" placeholder="Password" required>
+                    
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" name="password2" id="reg-password2" placeholder="Confirm Password" required>
+                    
+                    <label for="role">Register as:</label>
+                    <select name="role" id="reg-role" required>
+                        <option value="" disabled selected>Select your role</option>
+                        <option value="parent_student" {% if register_form.role.value == 'parent_student' %}selected{% endif %}>Parent/Student</option>
+                        <option value="tutor_center" {% if register_form.role.value == 'tutor_center' %}selected{% endif %}>Tutor/Tuition Center</option>
+                    </select>
+                    <input type="hidden" name="sign_up" value="true">
+                    <button type="submit" name="register" class="auth-btn-new">Register</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Forgot Password Modal -->
+
+        <div id="forgotPasswordModal" class="modal-new">
+            <div class="modal-content-new">
+                <span class="close-new">&times;</span>
+                <h2>Reset Password</h2>
+                <form id="forgotPasswordForm" method="POST" action="{% url 'reset_password' %}">
+                    {% csrf_token %}
+                    <div id="password-reset-errors" class="alert-new alert-error-new" style="display: none;">
+                        <ul></ul>
+                    </div>
+                    <label for="reset-username">Username</label>
+                    <input type="text" id="reset-username" name="username" required>
+                    
+                    <label for="reset-password">New Password</label>
+                    <input type="password" id="reset-password" name="password" required>
+                    
+                    <label for="reset-confirm-password">Confirm New Password</label>
+                    <input type="password" id="reset-confirm-password" name="confirm_password" required>
+                    
+                    <button type="submit" class="reset-btn-new">Reset Password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const referrer = document.referrer;
+            if (referrer.includes('logout')) {
+                // Clear any existing validation messages
+                document.querySelectorAll('.alert-new').forEach(alert => {
+                    if (!alert.closest('#login-container')) {
+                        alert.style.display = 'none';
+                    }
+                });
+                
+                // Reset forms
+                document.querySelectorAll('form').forEach(form => {
+                    if (!form.closest('#login-container')) {
+                        form.reset();
+                    }
+                });
+        
+                // Hide error containers
+                document.getElementById('register-errors').style.display = 'none';
+                document.getElementById('password-reset-errors').style.display = 'none';
+            }
+
+
+            // Toggle functionality
+            const loginButton = document.getElementById("toggle-login");
+            const registerButton = document.getElementById("toggle-register");
+            const loginContainer = document.getElementById("login-container");
+            const registerContainer = document.getElementById("register-container");
+            const errorsContainer = document.getElementById('register-errors');
+            const errorsList = errorsContainer.querySelector('ul');
+
+            // Show register form if there are register errors
+            {% if register_form.errors %}
+                loginContainer.classList.add("hidden-new");
+                registerContainer.classList.remove("hidden-new");
+                registerButton.classList.add("hidden-new");
+                loginButton.classList.remove("hidden-new");
+            {% endif %}
+
+            loginButton.addEventListener("click", () => {
+                loginContainer.classList.remove("hidden-new");
+                registerContainer.classList.add("hidden-new");
+                loginButton.classList.add("hidden-new");
+                registerButton.classList.remove("hidden-new");
+                // Clear register form validations
+                document.getElementById('register-errors').style.display = 'none';
+                document.getElementById('registerForm').reset();
+            });
+
+            registerButton.addEventListener("click", () => {
+                registerContainer.classList.remove("hidden-new");
+                loginContainer.classList.add("hidden-new");
+                registerButton.classList.add("hidden-new");
+                loginButton.classList.remove("hidden-new");
+            });
+
+            // Registration password validation
+            const password1Input = document.getElementById('reg-password1');
+            const password2Input = document.getElementById('reg-password2');
+            
+            function validatePasswords() {
+                const password1 = password1Input.value;
+                const password2 = password2Input.value;
+                
+                errorsList.innerHTML = '';
+                let hasErrors = false;
+
+                if (password1 !== password2 && password2 !== '') {
+                    errorsList.innerHTML += '<li>Passwords do not match</li>';
+                    hasErrors = true;
+                }
+
+                if (password1.length < 8 && password1 !== '') {
+                    errorsList.innerHTML += '<li>Password must be at least 8 characters long</li>';
+                    hasErrors = true;
+                }
+
+                errorsContainer.style.display = hasErrors ? 'block' : 'none';
+            }
+
+            password1Input.addEventListener('input', validatePasswords);
+            password2Input.addEventListener('input', validatePasswords);
+
+            // Register form submission validation
+            const registerForm = document.getElementById('registerForm');
+            registerForm.addEventListener('submit', function(event) {
+                const password1 = password1Input.value;
+                const password2 = password2Input.value;
+                let isValid = true;
+
+                errorsList.innerHTML = '';
+
+                if (password1 !== password2) {
+                    errorsList.innerHTML += '<li>Passwords do not match</li>';
+                    isValid = false;
+                }
+
+                if (password1.length < 8) {
+                    errorsList.innerHTML += '<li>Password must be at least 8 characters long</li>';
+                    isValid = false;
+                }
+
+                errorsContainer.style.display = isValid ? 'none' : 'block';
+
+                if (!isValid) {
+                    event.preventDefault();
+                }
+            });
+
+            // Forgot Password Modal functionality
+            const modal = document.getElementById("forgotPasswordModal");
+            const closeBtn = document.querySelector(".close-new");
+            const forgotPasswordLink = document.querySelector(".forgot-password-link");
+
+            forgotPasswordLink.addEventListener("click", (e) => {
+                e.preventDefault();
+                modal.style.display = "block";
+            });
+
+            closeBtn.addEventListener("click", () => {
+                modal.style.display = "none";
+            });
+
+            window.addEventListener("click", (e) => {
+                if (e.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+
+            // Password reset validation
+            const resetForm = document.getElementById("forgotPasswordForm");
+            const resetPassword = document.getElementById("reset-password");
+            const resetConfirmPassword = document.getElementById("reset-confirm-password");
+            const resetErrors = document.getElementById("password-reset-errors");
+            const resetErrorsList = resetErrors.querySelector("ul");
+
+            function validateResetPasswords() {
+                resetErrorsList.innerHTML = "";
+                let hasErrors = false;
+
+                if (resetPassword.value !== resetConfirmPassword.value) {
+                    resetErrorsList.innerHTML += "<li>Passwords do not match</li>";
+                    hasErrors = true;
+                }
+
+                if (resetPassword.value.length < 8) {
+                    resetErrorsList.innerHTML += "<li>Password must be at least 8 characters long</li>";
+                    hasErrors = true;
+                }
+
+                resetErrors.style.display = hasErrors ? "block" : "none";
+                return !hasErrors;
+            }
+
+            resetForm.addEventListener("submit", (e) => {
+                if (!validateResetPasswords()) {
+                    e.preventDefault();
+                }
+            });
+
+            // Check for reset password success/error messages in URL
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('reset_success') || urlParams.has('reset_error')) {
+                document.querySelector(`[name="sign_in"]`).scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>

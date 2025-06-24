@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor Dashboard</title>
+    {% load static %}
+    {% load youtube_filters %}
+    <link rel="stylesheet" href="{% static 'edu/css/tutor_dashboard.css' %}">
+    <style>
+        .profile-image-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .profile-image {
+            max-width: 200px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: block;
+            margin: 10px auto;
+        }
+        .image-upload-section {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            border-radius: 5px;
+        }
+        .current-image {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .form-row input[type="file"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+            margin-top: 5px;
+        }
+        .help-text {
+            display: block;
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        {% if not tutor_profile or edit_mode %}
+            <!-- Profile Setup/Edit Form -->
+            <div class="form-wrapper">
+                <h2 class="form-title">
+                    {% if not tutor_profile %}
+                        Set Up Your Tutor Profile
+                    {% else %}
+                        Edit Your Tutor Profile
+                    {% endif %}
+                </h2>
+                <form method="POST" enctype="multipart/form-data" class="custom-form">
+                    {% csrf_token %}
+
+                    <!-- Profile Image Section -->
+                    <fieldset class="form-section">
+                        <legend>Profile Image</legend>
+                        <div class="image-upload-section">
+                            {% if tutor_profile.profile_image %}
+                                <div class="current-image">
+                                    <p>Current Profile Image:</p>
+                                    <img src="{% url 'serve_tutor_image' tutor_profile.id %}" 
+                                         alt="Current Profile" 
+                                         class="profile-image">
+                                </div>
+                            {% endif %}
+                            <div class="form-row">
+                                <label for="id_profile_image">Upload New Profile Image</label>
+                                {{ form.profile_image }}
+                                <small class="help-text">Supported formats: JPEG, PNG, GIF (Max size: 5MB)</small>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Personal Information Section -->
+                    <fieldset class="form-section">
+                        <legend>Personal Information</legend>
+                        <div class="form-row">
+                            <label for="id_phone_number">Phone Number</label>
+                            {{ form.phone_number }}
+                        </div>
+                        <div class="form-row">
+                            <label for="id_bio">Bio</label>
+                            {{ form.bio }}
+                        </div>
+                        <div class="form-row">
+                            <label for="id_street">Street</label>
+                            {{ form.street }}
+                        </div>
+                        <div class="form-row">
+                            <label for="id_city">City</label>
+                            {{ form.city }}
+                        </div>
+                        <div class="form-row">
+                            <label for="id_state">State</label>
+                            {{ form.state }}
+                        </div>
+                        <div class="form-row">
+                            <label for="id_postcode">Postcode</label>
+                            {{ form.postcode }}
+                        </div>
+                        <div class="form-row">
+                            <label for="id_country">Country</label>
+                            {{ form.country }}
+                        </div>
+                    </fieldset>
+
+                    <!-- Subjects and Specializations Section -->
+                    <fieldset class="form-section">
+                        <legend>Subjects and Specializations</legend>
+                        <div class="form-row">
+                            <label for="id_subjects_offered">Subjects Offered</label>
+                            {{ form.subjects_offered }}
+                        </div>
+                        <div class="form-row">
+                            <label for="id_specializations">Specializations</label>
+                            {{ form.specializations }}
+                        </div>
+                        <div class="form-row">
+                            <label for="id_certifications">Certifications</label>
+                            {{ form.certifications }}
+                        </div>
+                        <div class="form-row">
+                            <label for="id_teaching_experience">Teaching Experience (Years)</label>
+                            {{ form.teaching_experience }}
+                        </div>
+                        <div class="form-row">
+                            <label>School Level (Select Multiple)</label>
+                            <div id="school_level_checkboxes" class="checkbox-group">
+                                {% for key, value in form.fields.school_level.choices %}
+                                    <div class="checkbox-item">
+                                        <input 
+                                            type="checkbox" 
+                                            id="school_level_{{ key }}" 
+                                            name="school_level" 
+                                            value="{{ key }}" 
+                                            {% if key in school_level_list %}checked{% endif %}
+                                            multiple
+                                        >
+                                        <label for="school_level_{{ key }}">{{ value }}</label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>   
+                    </fieldset>
+
+                    <!-- Additional Details Section -->
+                    <fieldset class="form-section">
+                        <legend>Additional Details</legend>
+                        <div class="form-row">
+                            <label for="id_hourly_rate">Hourly Rate</label>
+                            {{ form.hourly_rate }}
+                        </div>
+                        <div class="form-row">
+                            <label for="id_weekly_hours">Weekly Hours</label>
+                            {{ form.weekly_hours }}
+                        </div>
+                        <div class="form-row">
+                            <label for="id_availability_schedule">Availability Schedule</label>
+                            {{ form.availability_schedule }}
+                        </div>
+                        <div class="form-row">
+                            <label for="id_qualifications">Qualifications</label>
+                            {{ form.qualifications }}
+                        </div>
+                        <div class="form-row">
+                            <label for="id_youtube_link">YouTube Video Link</label>
+                            {{ form.youtube_link }}
+                        </div>
+                    </fieldset>
+
+                    <button type="submit" class="btn-primary-su">
+                        {% if not tutor_profile %}
+                            Save Profile
+                        {% else %}
+                            Update Profile
+                        {% endif %}
+                    </button>
+                </form>
+                <a href="{% url 'index' %}" class="btn-secondary">Back to Home</a>
+            </div>
+        {% else %}
+            <!-- Display Profile Details -->
+            <h1 class="welcome-text">Welcome, {{ tutor_profile.user.first_name }}</h1>
+            <div class="profile-details">
+                <!-- Profile Image Section -->
+                <div class="profile-section profile-image-container">
+                    <h3>Profile Image</h3>
+                    {% if tutor_profile.profile_image %}
+                        <img src="{% url 'serve_tutor_image' tutor_profile.id %}" 
+                             alt="Profile Image" 
+                             class="profile-image">
+                    {% else %}
+                        <p>No profile image uploaded</p>
+                    {% endif %}
+                </div>
+
+                <!-- Personal Information Section -->
+                <div class="profile-section">
+                    <h3>Personal Information</h3>
+                    <p><strong>Phone Number:</strong> {{ tutor_profile.phone_number }}</p>
+                    <p><strong>Bio:</strong> {{ tutor_profile.bio }}</p>
+                    <p><strong>Location:</strong> 
+                        {{ tutor_profile.street }}, {{ tutor_profile.city }}, 
+                        {{ tutor_profile.state }}, {{ tutor_profile.postcode }}, 
+                        {{ tutor_profile.country }}
+                    </p>
+                </div>
+
+                <!-- Subjects and Specializations Section -->
+                <div class="profile-section">
+                    <h3>Subjects and Specializations</h3>
+                    <p><strong>Subjects Offered:</strong> {{ tutor_profile.subjects_offered }}</p>
+                    <p><strong>Specializations:</strong> {{ tutor_profile.specializations }}</p>
+                    <p><strong>Certifications:</strong> {{ tutor_profile.certifications }}</p>
+                    <p><strong>Teaching Experience:</strong> {{ tutor_profile.teaching_experience }} years</p>
+                    <p><strong>School Level:</strong>
+                        {% if school_level_list %}
+                            <ul>
+                                {% for level in school_level_list %}
+                                    <li>{{ level }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            No school levels selected.
+                        {% endif %}
+                    </p>
+                </div>
+
+                <!-- Additional Details Section -->
+                <div class="profile-section">
+                    <h3>Additional Details</h3>
+                    <p><strong>Hourly Rate:</strong> ${{ tutor_profile.hourly_rate }}</p>
+                    <p><strong>Weekly Hours:</strong> {{ tutor_profile.weekly_hours }}</p>
+                    <p><strong>Availability:</strong> {{ tutor_profile.availability_schedule }}</p>
+                    <p><strong>Qualifications:</strong> {{ tutor_profile.qualifications }}</p>
+                </div>
+
+                <!-- YouTube Video Section -->
+                {% if tutor_profile.youtube_link %}
+                    <div class="profile-section video-section">
+                        <h3>Watch an Introduction Video</h3>
+                        <iframe 
+                            width="560" 
+                            height="315" 
+                            src="https://www.youtube.com/embed/{{ tutor_profile.youtube_link|extract_youtube_id }}" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                {% endif %}
+            </div>
+            <a href="?edit=true" class="btn-primary">Edit Profile</a>
+            <a href="{% url 'index' %}" class="btn-secondary">Back to Home</a>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Tutors</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'edu/css/tutor_search.css' %}">
+    <style>
+        /* Form Controls */
+        .form-control {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        /* Select Specific Styling */
+        select.form-control {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: white;
+            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23002663' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 1em;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #002663;
+            box-shadow: 0 0 0 3px rgba(0, 38, 99, 0.1);
+        }
+
+        select.form-control:hover {
+            border-color: #003a99;
+        }
+
+        /* Select Options Styling */
+        select.form-control option {
+            padding: 10px;
+            background-color: white;
+            color: #333;
+        }
+
+        select.form-control option:hover {
+            background-color: #f8f9fa;
+        }
+
+        /* Placeholder Option */
+        select.form-control option[value=""] {
+            color: #666;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <h1>Find Your Perfect Tutor</h1>
+            <p>Discover tutors tailored to your needs by applying filters below.</p>
+        </div>
+    </header>
+    <main class="container">
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <h2>Search Filters</h2>
+                <form method="get" class="search-form">
+                    <div class="form-row">
+                        <label for="location">Location:</label>
+                        <input type="text" id="location" name="location" placeholder="Enter your city" class="form-control" value="{{ request.GET.location }}">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="subjects_offered">Subjects Offered:</label>
+                        <select id="subjects_offered" name="subjects_offered" class="form-control">
+                            <option value="">Select a subject</option>
+                            <option value="Mathematics" {% if request.GET.subjects_offered == "Mathematics" %}selected{% endif %}>Mathematics</option>
+                            <option value="Science" {% if request.GET.subjects_offered == "Science" %}selected{% endif %}>Science</option>
+                            <option value="English" {% if request.GET.subjects_offered == "English" %}selected{% endif %}>English</option>
+                            <option value="History" {% if request.GET.subjects_offered == "History" %}selected{% endif %}>History</option>
+                            <option value="Geography" {% if request.GET.subjects_offered == "Geography" %}selected{% endif %}>Geography</option>
+                            <option value="Physics" {% if request.GET.subjects_offered == "Physics" %}selected{% endif %}>Physics</option>
+                            <option value="Chemistry" {% if request.GET.subjects_offered == "Chemistry" %}selected{% endif %}>Chemistry</option>
+                            <option value="Biology" {% if request.GET.subjects_offered == "Biology" %}selected{% endif %}>Biology</option>
+                            <option value="Economics" {% if request.GET.subjects_offered == "Economics" %}selected{% endif %}>Economics</option>
+                            <option value="Accounting" {% if request.GET.subjects_offered == "Accounting" %}selected{% endif %}>Accounting</option>
+                        </select>
+                        {% comment %} <input type="text" id="custom_subject" name="custom_subject" placeholder="Or type your subject here" class="form-control" value="{{ request.GET.custom_subject }}"> {% endcomment %}
+                    </div>
+
+                    <div class="form-row">
+                        <label for="hourly_rate_min">Hourly Rate Min:</label>
+                        <input type="number" id="hourly_rate_min" name="hourly_rate_min" placeholder="Min Rate" class="form-control" value="{{ request.GET.hourly_rate_min }}">
+                    </div>
+                    
+                    <div class="form-row">
+                        <label for="school_level">School Level:</label>
+                        <select id="school_level" name="school_level" class="form-control">
+                            <option value="">Select school level</option>
+                            <option value="kindergarten" {% if request.GET.school_level == "kindergarten" %}selected{% endif %}>Kindergarten</option>
+                            <option value="primary" {% if request.GET.school_level == "primary" %}selected{% endif %}>Primary</option>
+                            <option value="secondary" {% if request.GET.school_level == "secondary" %}selected{% endif %}>Secondary</option>
+                            <option value="preuniversity" {% if request.GET.school_level == "preuniversity" %}selected{% endif %}>Pre-University</option>
+                            <option value="university" {% if request.GET.school_level == "university" %}selected{% endif %}>University</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="hourly_rate_max">Hourly Rate Max:</label>
+                        <input type="number" id="hourly_rate_max" name="hourly_rate_max" placeholder="Max Rate" class="form-control" value="{{ request.GET.hourly_rate_max }}">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="teaching_experience">Teaching Experience:</label>
+                        <input type="number" id="teaching_experience" name="teaching_experience" placeholder="Experience (Years)" class="form-control" value="{{ request.GET.teaching_experience }}">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="specializations">Specializations:</label>
+                        <input type="text" id="specializations" name="specializations" placeholder="Enter specialization" class="form-control" value="{{ request.GET.specializations }}">
+                    </div>
+
+                    <button type="submit" class="btn-search">Search</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section">
+            <h2>Search Results</h2>
+            <div class="results">
+                {% for profile in profiles %}
+                <div class="profile-card">
+                    <div class="profile-info">
+                        <h3>{{ profile.user.first_name }} {{ profile.user.last_name }}</h3>
+                        <p><strong>Location:</strong> {{ profile.city }}, {{ profile.state }}</p>
+                        <p><strong>Hourly Rate:</strong> ${{ profile.hourly_rate }}</p>
+                        <p><strong>Experience:</strong> {{ profile.teaching_experience }} years</p>
+                        <p><strong>Subjects Offered:</strong> {{ profile.subjects_offered }}</p>
+                        <a href="{% url 'tutor_detail' profile.id %}" class="btn-view-profile">View Profile</a>
+                    </div>
+                </div>
+                {% empty %}
+                    <p class="no-results">No tutors found matching your criteria.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Pagination Section -->
+        <section class="pagination-section">
+            <div class="pagination">
+                {% if profiles.has_previous %}
+                    <a href="?page=1" class="page-link">First</a>
+                    <a href="?page={{ profiles.previous_page_number }}" class="page-link">Previous</a>
+                {% endif %}
+
+                <span class="current-page">
+                    Page {{ profiles.number }} of {{ profiles.paginator.num_pages }}
+                </span>
+
+                {% if profiles.has_next %}
+                    <a href="?page={{ profiles.next_page_number }}" class="page-link">Next</a>
+                    <a href="?page={{ profiles.paginator.num_pages }}" class="page-link">Last</a>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+</body>
+</html>

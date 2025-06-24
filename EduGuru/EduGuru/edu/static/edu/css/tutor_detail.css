@@ -1,0 +1,229 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #f8f9fa;
+}
+
+/* General Container Styles */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* First Section */
+.first-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #e3f2fd; /* Light blue background */
+    padding: 40px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.first-section .details {
+    flex: 3;
+    margin-right: 20px;
+}
+
+.first-section .details h1 {
+    text-align: center;
+    font-size: 40px;
+    color: #002663;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.first-section .details p {
+    line-height: 2;
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.first-section .details strong {
+    color: #002663;
+    font-weight: bold;
+}
+
+.first-section .profile-pic {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.first-section .profile-pic img {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border: 3px solid #002663;
+}
+
+/* Second Section */
+.second-section {
+    background: #fff8e1; /* Light yellow background */
+    text-align: center;
+    padding: 40px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.second-section h2 {
+    color: #002663;
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.second-section iframe {
+    border: none;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 800px;
+    height: 450px;
+}
+
+/* Third Section */
+.third-section {
+    background: #e3f2fd; /* Light blue background */
+    padding: 40px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.third-section h2 {
+    font-size: 28px;
+    color: #002663;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.third-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.third-section ul li {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    font-size: 16px;
+}
+
+.third-section ul li strong {
+    color: #002663;
+    font-weight: bold;
+}
+
+/* Form Styling */
+form textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    resize: none;
+}
+
+form button {
+    background: #ffc107;
+    border: none;
+    padding: 14px 20px;
+    color: #002663;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background: #e0a800;
+}
+
+/* Star Rating */
+.star {
+    font-size: 50px;
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.3s ease;
+}
+
+.star.selected {
+    color: gold;
+}
+
+.star:hover {
+    color: gold;
+}
+
+/* Center container */
+.btn-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    margin-top: 20px; /* Add spacing above */
+}
+
+/* Back Button */
+.btn-back {
+    display: inline-block;
+    padding: 14px 20px;
+    background: #002663;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+    background: #0047ab;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .first-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .first-section .details {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .first-section .profile-pic img {
+        width: 180px;
+        height: 180px;
+    }
+
+    .second-section iframe {
+        height: 250px;
+    }
+
+    .third-section ul li {
+        font-size: 14px;
+    }
+
+    form textarea {
+        font-size: 14px;
+    }
+}

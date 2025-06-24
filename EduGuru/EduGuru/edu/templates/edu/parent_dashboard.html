@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'edu/css/parent_dashboard.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        {% if not details or edit_mode %}
+            <!-- Details Setup/Edit Form -->
+            <div class="form-wrapper">
+                <h2 class="form-title">{% if not details %}Set Up Your Details{% else %}Edit Your Details{% endif %}</h2>
+                <form method="POST" class="custom-form">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-row">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {% if field.name == "favorite_subjects" %}
+                                <!-- Dropdown for multiple selection -->
+                                <div class="dropdown" id="multiSelectDropdown">
+                                    <div class="dropdown-btn" onclick="toggleDropdown()">Select Favorite Subjects</div>
+                                    <div class="dropdown-content">
+                                        {% for subject in form.favorite_subjects.field.choices %}
+                                            <label>
+                                                <input type="checkbox" name="favorite_subjects" value="{{ subject.0 }}"
+                                                {% if subject.0 in favorite_subjects_list %}checked{% endif %}>
+                                                {{ subject.1 }}
+                                            </label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% else %}
+                                {{ field }}
+                            {% endif %}
+                            {% if field.errors %}
+                                <div class="error-message">
+                                    {{ field.errors|join:', ' }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="btn-primary">{% if not details %}Save Details{% else %}Update Details{% endif %}</button>
+                </form>
+            </div>
+        {% else %}
+            <!-- Display Profile Details -->
+            <h1>Welcome, {{ details.user.first_name }}</h1>
+            <div class="profile-details">
+                <p><strong>Age:</strong> {{ details.age }}</p>
+                <p><strong>Phone Number:</strong> {{ details.phone_number }}</p>
+                <p><strong>Street:</strong> {{ details.street }}</p>
+                <p><strong>City:</strong> {{ details.city }}</p>
+                <p><strong>State:</strong> {{ details.state }}</p>
+                <p><strong>Postcode:</strong> {{ details.postcode }}</p>
+                <p><strong>Country:</strong> {{ details.country }}</p>
+                <p><strong>Favorite Subjects:</strong> 
+                    {% if favorite_subjects_list %}
+                        <ul>
+                            {% for subject in favorite_subjects_list %}
+                                <li>{{ subject }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        No favorite subjects selected.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="actions">
+                <a href="?edit=true" class="btn-primary">Edit Details</a>
+                <a href="{% url 'index' %}" class="btn-secondary">Back to Home</a>
+            </div>
+        {% endif %}
+    </div>
+    <script>
+        function toggleDropdown() {
+            const dropdownContent = document.querySelector('.dropdown-content');
+            dropdownContent.classList.toggle('show');
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.closest('#multiSelectDropdown')) {
+                const dropdowns = document.querySelectorAll('.dropdown-content');
+                dropdowns.forEach(dropdown => dropdown.classList.remove('show'));
+            }
+        };
+    </script>
+</body>
+</html>

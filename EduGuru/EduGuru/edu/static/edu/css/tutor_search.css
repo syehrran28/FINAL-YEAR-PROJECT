@@ -1,0 +1,202 @@
+/* General Reset */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Section */
+.header {
+    background-color: #002663;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.header p {
+    margin-top: 10px;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Search Section */
+.search-section {
+    background-color: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-container h2 {
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    color: #002663;
+}
+
+.search-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.search-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.search-form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.btn-search {
+    grid-column: span 2;
+    padding: 12px 20px;
+    background-color: #ffca28;
+    color: #002663;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-search:hover {
+    background-color: #e6b821;
+}
+
+/* Results Section */
+.results-section h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #002663;
+}
+
+.results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Profile Card Styles */
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;  /* Increased padding */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.profile-info {
+    width: 100%;
+}
+
+.profile-info h3 {
+    margin: 0 0 20px 0;  /* Added bottom margin */
+    font-size: 1.4rem;   /* Slightly larger font */
+    color: #002663;
+}
+
+.profile-info p {
+    margin: 0 0 15px 0;  /* Increased bottom margin */
+    color: #666;
+    line-height: 1.6;    /* Improved line height */
+}
+
+.profile-info p:last-of-type {
+    margin-bottom: 25px;  /* Extra space before the button */
+}
+
+.btn-view-profile {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 25px;   /* Larger padding */
+    background-color: #002663;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-view-profile:hover {
+    background-color: #003a99;
+}
+
+/* Pagination Section */
+.pagination-section {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination .page-link {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 10px 15px;
+    background-color: #002663;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.pagination .page-link:hover {
+    background-color: #003a99;
+}
+
+.pagination .current-page {
+    font-weight: bold;
+    color: #333;
+    margin: 0 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .search-form {
+        grid-template-columns: 1fr;
+    }
+
+    .btn-search {
+        font-size: 1rem;
+    }
+
+    .profile-card {
+        padding: 25px;
+    }
+    
+    .profile-info {
+        text-align: left;
+    }
+    
+    .profile-info p {
+        margin-bottom: 12px;
+    }
+}

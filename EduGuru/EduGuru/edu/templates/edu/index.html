@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGuru - Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'edu/css/index.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <h1>EduGuru</h1>
+        </div>
+        <nav class="navbar-links">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">What We Offer</a></li>
+                <li><a href="#why-choose-us">Why Choose Us</a></li>
+                <li><a href="#how-it-works">How EduGuru Works</a></li>
+                <li><a href="{% url 'tutor_search' %}" class="btn search-btn">Search</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile_redirect' %}" class="btn profile-btn">Profile</a>
+                <a href="{% url 'logout' %}" class="btn logout-btn">Logout</a>
+            {% else %}
+                <a href="{% url 'auth_page' %}" class="btn login-btn">Login</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="banner">
+        <div class="banner-content text-center">
+            <h2>Hire the Best Tutors for Your Academic Success</h2>
+            <p>Connecting students and parents with highly qualified tutors from around the world to achieve academic excellence.</p>
+        </div>
+    </section>
+
+    <!-- What We Offer Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">What We Offer?</h2>
+        <div class="flex-container">
+            <div class="card">
+                <img src="{% static 'edu/images/1 SCENE.svg' %}" alt="Expert Consultation">
+                <h3>Expert Consultation</h3>
+                <p>Get free assessments to align students with the best tutors for their academic goals, powered by AI-driven consultation for personalized learning.</p>
+                <button class="more-btn" data-modal="modal-1">Click for More</button>
+            </div>
+            <div class="card">
+                <img src="{% static 'edu/images/2 SCENE.svg' %}" alt="Affordable and Inclusive Options">
+                <h3>Affordable and Inclusive Options</h3>
+                <p>We ensure affordability and pricing flexibility to make quality education accessible to all socio-economic groups.</p>
+                <button class="more-btn" data-modal="modal-2">Click for More</button>
+            </div>
+            <div class="card">
+                <img src="{% static 'edu/images/3 SCENE.svg' %}" alt="Trusted Tutors">
+                <h3>Trusted Tutors</h3>
+                <p>Our platform verifies tutor credentials and incorporates user reviews to maintain trust and credibility.</p>
+                <button class="more-btn" data-modal="modal-3">Click for More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Popups for What We Offer -->
+    <div class="modal" id="modal-1">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Expert Consultation</h2>
+            <p>Learn how AI-driven assessments align students with the best tutors for academic success.</p>
+        </div>
+    </div>
+    <div class="modal" id="modal-2">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Affordable and Inclusive Options</h2>
+            <p>Discover how we make quality education accessible to everyone through tailored pricing.</p>
+        </div>
+    </div>
+    <div class="modal" id="modal-3">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Trusted Tutors</h2>
+            <p>Find out how we verify tutor credentials to build trust and ensure credibility.</p>
+        </div>
+    </div>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-choose-us" class="section2">
+        <h2 class="section-title">Why Choose Us?</h2>
+        <div class="flex-container">
+            <div class="card">
+                <img src="{% static 'edu/images/4 SCENE.svg' %}" alt="Quality Tutors">
+                <h3>Quality Tutors</h3>
+                <p>Our tutors are rigorously verified to ensure top-quality teaching for your academic growth.</p>
+                <button class="more-btn" data-modal="modal-4">Click for More</button>
+            </div>
+            <div class="card">
+                <img src="{% static 'edu/images/5 SCENE.svg' %}" alt="Personalized Learning">
+                <h3>Personalized Learning</h3>
+                <p>We provide tailored learning experiences designed to meet individual academic needs.</p>
+                <button class="more-btn" data-modal="modal-5">Click for More</button>
+            </div>
+            <div class="card">
+                <img src="{% static 'edu/images/6 SCENE.svg' %}" alt="Accessible Anytime">
+                <h3>Accessible Anytime</h3>
+                <p>Our platform is available 24/7, allowing students to learn at their convenience.</p>
+                <button class="more-btn" data-modal="modal-6">Click for More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Popups for Why Choose Us -->
+    <div class="modal" id="modal-4">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Quality Tutors</h2>
+            <p>Discover how we ensure the highest standards in tutoring through rigorous verification processes.</p>
+        </div>
+    </div>
+    <div class="modal" id="modal-5">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Personalized Learning</h2>
+            <p>Experience customized education tailored to individual needs for better academic outcomes.</p>
+        </div>
+    </div>
+    <div class="modal" id="modal-6">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Accessible Anytime</h2>
+            <p>Learn anytime, anywhere with our 24/7 accessible learning platform.</p>
+        </div>
+    </div>
+
+    <!-- How EduGuru Works Section -->
+    <section id="how-it-works" class="section">
+        <h2 class="section-title">How EduGuru Works</h2>
+        <div class="flex-container">
+            <div class="card">
+                <img src="{% static 'edu/images/7 SCENE.svg' %}" alt="Step 1">
+                <h3>Step 1</h3>
+                <p>Register on EduGuru and create your profile to get started.</p>
+                <button class="more-btn" data-modal="modal-7">Click for More</button>
+            </div>
+            <div class="card">
+                <img src="{% static 'edu/images/8 SCENE.svg' %}" alt="Step 2">
+                <h3>Step 2</h3>
+                <p>Explore tutor options tailored to your academic needs.</p>
+                <button class="more-btn" data-modal="modal-8">Click for More</button>
+            </div>
+            <div class="card">
+                <img src="{% static 'edu/images/9 SCENE.svg' %}" alt="Step 3">
+                <h3>Step 3</h3>
+                <p>Schedule lessons and begin your journey to academic success.</p>
+                <button class="more-btn" data-modal="modal-9">Click for More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Popups for How EduGuru Works -->
+    <div class="modal" id="modal-7">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Step 1: Register</h2>
+            <p>Sign up on EduGuru and set up your profile to get started on your learning journey.</p>
+        </div>
+    </div>
+    <div class="modal" id="modal-8">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Step 2: Explore Tutors</h2>
+            <p>Browse through our list of qualified tutors tailored to your specific academic needs.</p>
+        </div>
+    </div>
+    <div class="modal" id="modal-9">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Step 3: Schedule Lessons</h2>
+            <p>Book lessons easily and begin your path to academic success.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section about">
+                <h4>About EduGuru</h4>
+                <p>EduGuru is an initiative to help students connect with the best tutors and achieve academic excellence.</p>
+            </div>
+            <div class="footer-section nav-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#about">What We Offer</a></li>
+                    <li><a href="#why-choose-us">Why Choose Us</a></li>
+                    <li><a href="#how-it-works">How EduGuru Works</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact">
+                <h4>Contact Us</h4>
+                <p>Email: support@eduguru.com</p>
+                <p>Phone: +123 456 7890</p>
+                <div class="footer-social">
+                    <a><i class="fab fa-facebook-f"></i></a>
+                    <a><i class="fab fa-twitter"></i></a>
+                    <a><i class="fab fa-instagram"></i></a>
+                    <a><i class="fab fa-linkedin-in"></i></a>
+                    <a><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 EduGuru. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.more-btn');
+            const modals = document.querySelectorAll('.modal');
+            const closeBtns = document.querySelectorAll('.close-btn');
+        
+            // Open modal on button click
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const modalId = button.getAttribute('data-modal');
+                    const modal = document.getElementById(modalId);
+                    if (modal) {
+                        modal.style.display = 'flex'; // Use flex to center the modal
+                    }
+                });
+            });
+        
+            // Close modal on close button click
+            closeBtns.forEach(closeBtn => {
+                closeBtn.addEventListener('click', () => {
+                    const modal = closeBtn.closest('.modal');
+                    if (modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            });
+        
+            // Close modal when clicking outside the modal content
+            window.addEventListener('click', (e) => {
+                modals.forEach(modal => {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+    </script>
+</body>
+</html>

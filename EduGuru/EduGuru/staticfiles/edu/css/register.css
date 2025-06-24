@@ -1,0 +1,220 @@
+    /* General Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f2f5;
+        color: #333;
+    }
+    
+    /* Navbar Styling */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 10%;
+        background-color: #1f285e;
+    }
+    
+    .navbar-logo h1 {
+        color: #ffca28;
+        font-size: 24px;
+    }
+    
+    .navbar-links {
+        display: flex;
+        list-style: none;
+    }
+    
+    .navbar-links li {
+        margin-left: 20px;
+    }
+    
+    .navbar-links a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 16px;
+    }
+    
+    .auth-buttons .btn {
+        padding: 10px 20px;
+        margin-left: 10px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        color: #ffffff;
+    }
+    
+    .btn {
+        background-color: #ffca28;
+        color: #333;
+    }
+    
+    .login-btn {
+        background-color: #ffffff;
+        color: #1f285e;
+        border: 1px solid #1f285e;
+    }
+    
+    .login-btn:hover {
+        background-color: #1f285e;
+        color: #ffffff;
+    }
+    
+    /* Hero Section Styling */
+    .hero {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 60px 10%;
+        background-color: #ffffff;
+    }
+    
+    .hero-content {
+        max-width: 50%;
+    }
+    
+    .hero-content h2 {
+        font-size: 2.5rem;
+        color: #1f285e;
+        margin-bottom: 20px;
+        line-height: 1.3;
+    }
+    
+    .hero-content p {
+        font-size: 1.1rem;
+        color: #666;
+        margin-bottom: 30px;
+        line-height: 1.5;
+    }
+    
+    .hero-buttons .btn {
+        padding: 12px 30px;
+        margin-right: 10px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 16px;
+    }
+    
+    .primary-btn {
+        background-color: #ffca28;
+        color: #333;
+    }
+    
+    .secondary-btn {
+        background-color: #333;
+        color: #ffffff;
+    }
+    
+    .hero-image img {
+        max-width: 500px;
+        border-radius: 10px;
+    }
+    
+    /* Why Choose Us Section */
+    .why-choose-us {
+        padding: 50px 10%;
+        text-align: center;
+        background-color: #f9f9f9;
+    }
+    
+    .why-choose-us h2 {
+        font-size: 2rem;
+        color: #1f285e;
+        margin-bottom: 20px;
+    }
+    
+    .why-choose-us p {
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 30px;
+    }
+    
+    .why-choose-us ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .why-choose-us li {
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    
+    /* Courses Section */
+    .courses {
+        padding: 50px 10%;
+        background-color: #ffffff;
+        text-align: center;
+    }
+    
+    .courses h2 {
+        font-size: 2rem;
+        color: #1f285e;
+        margin-bottom: 20px;
+    }
+    
+    .course-list {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-top: 30px;
+    }
+    
+    .course-item {
+        background-color: #f0f2f5;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        width: 30%;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .course-item h3 {
+        font-size: 1.5rem;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    
+    .course-item p {
+        font-size: 1rem;
+        color: #666;
+    }
+    
+    /* Button Hover Effects */
+    .btn:hover {
+        filter: brightness(1.1);
+        transition: filter 0.3s ease;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .hero {
+            flex-direction: column;
+            text-align: center;
+        }
+    
+        .hero-content {
+            max-width: 100%;
+        }
+    
+        .hero-image img {
+            max-width: 100%;
+            margin-top: 20px;
+        }
+    
+        .navbar-links,
+        .auth-buttons {
+            display: none; /* Hide on smaller screens */
+        }
+    
+        .course-item {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    }

@@ -1,0 +1,124 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.container, .dashboard-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #002663;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-section img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+}
+
+.stats, .profile-section p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.actions .btn-edit {
+    display: inline-block;
+    padding: 10px 20px;
+    color: white;
+    background: #28a745;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.actions .btn-edit:hover {
+    background: #218838;
+}
+
+.btn-back {
+    display: block;
+    width: fit-content;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    margin: 30px auto 0;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.btn-back:hover {
+    background-color: #0056b3;
+}
+
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    color: white;
+    background: #002663;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-submit:hover {
+    background: #0047ab;
+}
+
+form {
+    margin: 0 auto;
+}
+
+form .form-group {
+    margin-bottom: 15px;
+}
+
+form .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+form .form-group input,
+form .form-group textarea,
+form .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+form .form-group textarea {
+    resize: vertical;
+    height: 100px;
+}

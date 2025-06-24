@@ -1,0 +1,349 @@
+/* General Styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+}
+
+/* Container Styling */
+.dashboard-container {
+    max-width: 1100px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px; /* Curved corners */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.08); /* Softer shadow */
+}
+
+/* Page Titles */
+h1, .form-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #002855; /* Navy Blue */
+}
+
+.form-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #ffbf00; /* Gold */
+}
+
+/* Section Titles */
+.profile-section h3 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ffbf00; /* Gold for section titles */
+    text-align: center;
+    border-bottom: 2px solid #ffbf00;
+    padding-bottom: 5px;
+}
+
+/* Form Wrapper */
+.form-wrapper {
+    padding: 30px;
+    border-radius: 15px;
+    background: #fff9e6;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+}
+
+/* Fieldsets for Sections */
+fieldset {
+    border: none; /* Remove the gray outline */
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+legend {
+    font-size: 18px;
+    color: #002855; /* Navy Blue */
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* Form Rows */
+.custom-form .form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.custom-form .form-row label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333333; /* Dark Gray */
+    font-size: 16px;
+}
+
+.custom-form .form-row input,
+.custom-form .form-row select,
+.custom-form .form-row textarea {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px; /* Curved corners for inputs */
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+    appearance: none; /* For consistency across browsers */
+    height: 50px; /* Uniform input height */
+}
+
+.custom-form .form-row textarea {
+    resize: vertical;
+    min-height: 60px; /* Taller minimum height */
+    overflow: auto;
+}
+
+/* Focus Styling */
+.custom-form .form-row input:focus,
+.custom-form .form-row select:focus,
+.custom-form .form-row textarea:focus {
+    outline: none;
+    border-color: #ffbf00;
+    box-shadow: 0 0 6px rgba(255, 191, 0, 0.3);
+}
+
+/* Profile Section Styling */
+.profile-section {
+    margin-bottom: 40px; /* Spacing between sections */
+    padding: 20px;
+    background-color: #f0f8ff; /* Light Blue */
+    border-radius: 15px; /* Smooth section corners */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+}
+
+/* Section Content */
+.profile-section p {
+    font-size: 18px;
+    color: #002855; /* Navy Blue */
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.profile-section strong {
+    color: #ffbf00; /* Gold */
+}
+
+/* YouTube Video Section */
+.video-section iframe {
+    display: block;
+    margin: 20px auto;
+    border-radius: 15px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); /* Add shadow to video */
+}
+
+/* Buttons */
+.btn-primary {
+    display: block;
+    background-color: #ffbf00; /* Gold */
+    color: white;
+    text-align: center;
+    padding: 14px;
+    font-size: 16px;
+    border: none;
+    border-radius: 15px; /* Smooth button corners */
+    margin-top: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #d89d00; /* Darker Gold */
+    transform: scale(1.02);
+}
+
+/* Buttons */
+.btn-primary-su {
+    display: block;
+    width: 100%;
+    background-color: #ffbf00; /* Gold */
+    color: white;
+    text-align: center;
+    padding: 14px;
+    font-size: 16px;
+    border: none;
+    border-radius: 15px; /* Smooth button corners */
+    margin-top: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary-su:hover {
+    background-color: #d89d00; /* Darker Gold */
+    transform: scale(1.02);
+}
+
+.btn-secondary {
+    display: block;
+    text-align: center;
+    padding: 14px;
+    background-color: #002855; /* Navy Blue */
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 15px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #001a3a; /* Darker Navy */
+    transform: scale(1.02);
+}
+
+/* Checkbox Dropdown Styling
+.checkbox-dropdown {
+    position: relative;
+    width: 100%;
+} */
+
+.dropdown-btn {
+    width: 100%;
+    padding: 12px 15px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.dropdown-btn:hover {
+    background-color: #f9f9f9;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    z-index: 10;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    padding: 10px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-content label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.dropdown-content label:hover {
+    background-color: #f1f1f1;
+}
+
+/* .dropdown-content input[type="checkbox"] {
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+} */
+
+.show {
+    display: block;
+}
+
+select[multiple] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background-color: #fff;
+    font-size: 16px;
+    min-height: 150px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .form-title {
+        font-size: 24px;
+    }
+
+    .custom-form .form-row input,
+    .custom-form .form-row select,
+    .custom-form .form-row textarea {
+        font-size: 14px;
+        height: 45px;
+    }
+
+    .btn-primary, .btn-secondary {
+        font-size: 16px;
+        padding: 12px;
+    }
+}
+
+/* Style the checkbox container */
+#school_level_checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* In your CSS file */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.checkbox-item input[type="checkbox"] {
+    margin-right: 10px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+}
+
+.checkbox-item label {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Selected state styling */
+.checkbox-item input[type="checkbox"]:checked + label {
+    color: #007bff;
+    font-weight: 600;
+}
+
+/* Hover effect */
+.checkbox-item:hover {
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+/* Focus state */
+.checkbox-item input[type="checkbox"]:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}

@@ -1,0 +1,195 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+/* Auth Container */
+.auth-container-new {
+    display: flex;
+    width: 100%;
+    max-width: 1500px; /* Adjusted width */
+    background-color: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    overflow: hidden;
+    height: 750px; /* Adjusted height */
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Auth Content */
+.auth-content-new {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* Left Section */
+.auth-image-new {
+    flex: 0.9; /* Adjusted proportion */
+    background-color: #1f285e;
+    color: white;
+    text-align: center;
+    padding: 40px 20px; /* Adjusted padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px 0 0 15px;
+}
+
+.auth-image-new h1 {
+    font-size: 32px; /* Reduced font size */
+    font-weight: bold;
+    margin-bottom: 15px;
+    letter-spacing: 1.5px;
+}
+
+.auth-image-new p {
+    font-size: 14px; /* Reduced font size */
+    margin-bottom: 20px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.toggle-button-new {
+    margin: 10px 0;
+    padding: 10px 25px; /* Adjusted button size */
+    border: 2px solid #fff;
+    color: white;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 14px; /* Reduced font size */
+    font-weight: bold;
+}
+
+.toggle-button-new:hover {
+    background-color: white;
+    color: #1f285e;
+}
+
+/* Right Section */
+.form-container-new {
+    flex: 1.1; /* Adjusted proportion */
+    padding: 30px 40px; /* Adjusted padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 0 15px 15px 0;
+}
+
+.hidden-new {
+    display: none;
+}
+
+.form-container-new h2 {
+    color: #1f285e;
+    font-size: 24px; /* Reduced font size */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-container-new input,
+.form-container-new select {
+    width: 100%;
+    padding: 10px 15px; /* Adjusted padding */
+    margin-bottom: 15px; /* Adjusted spacing */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px; /* Reduced font size */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container-new input:focus,
+.form-container-new select:focus {
+    outline: none;
+    border-color: #33b864;
+    box-shadow: 0 0 6px rgba(51, 184, 100, 0.5);
+}
+
+.auth-btn-new {
+    padding: 12px;
+    background-color: #FFCA28;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px; /* Reduced font size */
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s;
+    margin-bottom: 10px;
+}
+
+.auth-btn-new:hover {
+    background-color: #e0a800;
+    transform: translateY(-2px);
+}
+
+.auth-btn-new.cancel-btn-new {
+    background-color: #f44336;
+}
+
+/* Error Alerts */
+.alert-new {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    font-size: 13px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.alert-new ul {
+    padding-left: 20px;
+}
+
+.alert-new li {
+    margin-bottom: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .auth-container-new {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .auth-image-new {
+        padding: 20px; /* Adjusted padding */
+    }
+
+    .form-container-new {
+        padding: 20px; /* Adjusted padding */
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

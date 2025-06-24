@@ -1,0 +1,237 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+}
+
+/* Container Styling */
+.dashboard-container {
+    max-width: 1100px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Page Title */
+h1 {
+    color: #002855;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+h2 {
+    color: #002855;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Form Wrapper */
+.form-wrapper {
+    padding: 30px;
+    border-radius: 10px;
+    background: #fff9e6;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Title */
+.form-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #ffbf00;
+    letter-spacing: 0.5px;
+}
+
+/* Form Rows */
+.custom-form .form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.custom-form .form-row label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333333;
+    font-size: 16px;
+}
+
+.custom-form .form-row input, 
+.custom-form .form-row select, 
+.custom-form .form-row textarea {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-form .form-row input:focus, 
+.custom-form .form-row select:focus, 
+.custom-form .form-row textarea:focus {
+    outline: none;
+    border-color: #ffbf00;
+    box-shadow: 0 0 6px rgba(255, 191, 0, 0.5);
+}
+
+.custom-form .form-row textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Dropdown Styling */
+.dropdown {
+    position: relative;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.dropdown-btn {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.dropdown-btn:hover {
+    background-color: #f9f9f9;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+.dropdown-content label {
+    display: block;
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.dropdown-content label:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown-content input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.show {
+    display: block;
+}
+
+/* Profile Details */
+.profile-details p {
+    font-size: 18px;
+    color: #002855;
+    line-height: 1.6;
+}
+
+.profile-details strong {
+    color: #ffbf00;
+}
+
+.profile-details ul {
+    list-style: disc;
+    margin-left: 20px;
+    color: #002855;
+}
+
+.profile-details ul li {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Buttons */
+.btn-primary {
+    display: block;
+    width: 100%;
+    background-color: #ffbf00;
+    color: white;
+    text-align: center;
+    padding: 14px 0;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #d89d00;
+    transform: scale(1.02);
+}
+
+.btn-secondary {
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 14px 0;
+    background-color: #002855;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 10px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #001a3a;
+    transform: scale(1.02);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .form-title {
+        font-size: 24px;
+    }
+
+    .custom-form .form-row input, 
+    .custom-form .form-row select, 
+    .custom-form .form-row textarea {
+        font-size: 14px;
+    }
+
+    .btn-primary, .btn-secondary {
+        font-size: 16px;
+        padding: 12px;
+    }
+}
