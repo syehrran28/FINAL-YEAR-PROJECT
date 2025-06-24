@@ -1,5 +1,4 @@
 # FINAL-YEAR-PROJECT
-EduGuru-Description:
 EduGuru – Bridging Students and Tutors Seamlessly
 EduGuru is a web-based platform designed to connect students, parents, tutors, and tuition centers in a structured and reliable way. Inspired by my own challenges as both a tutor and student, this Final Year Project simplifies the process of finding or offering tutoring services based on subject, experience, rates, and location.
 
